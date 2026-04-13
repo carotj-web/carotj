@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluación Fullstack: HTML, CSS, Color y UX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2a37;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-2: #1d4ed8;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --accent: #0ea5e9;
+      --border: #dbeafe;
+      --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, #f8fbff 35%, #f4f7fb 100%);
+      color: var(--text);
+    }
+
+    .container {
+      width: min(980px, 92vw);
+      margin: 2.2rem auto 3rem;
+    }
+
+    .header {
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: .6rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: .9rem;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: .4rem;
+      font-weight: 600;
+      font-size: .94rem;
+    }
+
+    input[type="text"], input[type="email"], input[type="date"] {
+      width: 100%;
+      padding: .76rem .85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: .98rem;
+      outline: none;
+      transition: .2s border-color, .2s box-shadow;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      border: 0;
+      background: var(--primary);
+      color: #fff;
+      padding: .78rem 1.05rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .08s ease, background .2s ease;
+    }
+
+    button:hover { background: var(--primary-2); }
+    button:active { transform: translateY(1px); }
+    button.secondary { background: #334155; }
+    button.success { background: var(--success); }
+
+    .hidden { display: none !important; }
+
+    .progress-wrap {
+      margin-top: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: .92rem;
+      color: var(--muted);
+      margin-bottom: .4rem;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > div {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      transition: width .25s ease;
+    }
+
+    .q-card {
+      border: 1px solid #dbeafe;
+      background: #f8fbff;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: .9rem;
+    }
+
+    .q-head {
+      font-size: .92rem;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: .5rem;
+    }
+
+    .q-text {
+      margin: 0 0 .8rem;
+      font-weight: 600;
+    }
+
+    .option {
+      display: flex;
+      gap: .6rem;
+      padding: .5rem .55rem;
+      border-radius: 10px;
+    }
+
+    .option:hover {
+      background: #eef2ff;
+    }
+
+    .result-banner {
+      border-radius: 14px;
+      padding: 1rem;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin-bottom: .95rem;
+      text-transform: uppercase;
+    }
+
+    .pass { background: linear-gradient(135deg, #16a34a, #059669); }
+    .fail { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: .8rem;
+    }
+
+    .score-item {
+      border: 1px solid #dbeafe;
+      border-radius: 12px;
+      padding: .7rem;
+      background: #f8fbff;
+    }
+
+    .score-item small { color: var(--muted); display: block; margin-bottom: .2rem; }
+    .score-item strong { font-size: 1.15rem; }
+
+    .review-list {
+      margin-top: 1rem;
+      display: grid;
+      gap: .7rem;
+    }
+
+    .review-item {
+      padding: .75rem;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+    }
+
+    .review-item.ok { border-left: 6px solid var(--success); }
+    .review-item.bad { border-left: 6px solid var(--danger); }
+
+    .status {
+      font-size: .9rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-top: .4rem;
+    }
+
+    .status.ok { color: var(--success); }
+    .status.bad { color: var(--danger); }
+
+    .msg {
+      margin-top: .8rem;
+      font-size: .92rem;
+      color: var(--muted);
+      padding: .65rem .75rem;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    @media (max-width: 780px) {
+      .grid, .score-grid { grid-template-columns: 1fr; }
+      .container { width: min(920px, 95vw); }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Evaluación Interactiva Fullstack</h1>
+      <p class="subtitle">HTML, CSS, teoría del color y UX básico. Completa los datos, responde 20 preguntas y genera el informe en PDF.</p>
+    </header>
+
+    <section id="intro" class="card">
+      <h2>Datos del evaluado</h2>
+      <div class="grid">
+        <div class="field">
+          <label for="fullName">Nombre completo</label>
+          <input id="fullName" type="text" placeholder="Ej. Ana Pérez López" required>
+        </div>
+        <div class="field">
+          <label for="email">Correo electrónico</label>
+          <input id="email" type="email" placeholder="ejemplo@correo.com" required>
+        </div>
+        <div class="field">
+          <label for="date">Fecha</label>
+          <input id="date" type="date" required>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="startBtn">Comenzar evaluación</button>
+      </div>
+      <div class="msg">La aprobación requiere al menos <strong>70%</strong> del puntaje total.</div>
+    </section>
+
+    <section id="quizSection" class="card hidden">
+      <h2>Cuestionario</h2>
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="progressText">0 / 20 respondidas</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+      </div>
+      <form id="quizForm"></form>
+      <div class="actions">
+        <button id="submitBtn" class="success" type="button">Finalizar evaluación</button>
+      </div>
+    </section>
+
+    <section id="resultSection" class="card hidden">
+      <h2>Resultado</h2>
+      <div id="resultBanner" class="result-banner"></div>
+      <div id="summary" class="score-grid"></div>
+      <div class="actions">
+        <button id="pdfBtn" type="button">Generar PDF</button>
+        <button id="restartBtn" class="secondary" type="button">Volver a intentar</button>
+      </div>
+      <div id="emailMsg" class="msg hidden"></div>
+      <div class="review-list" id="reviewList"></div>
+    </section>
+  </main>
+
+  <script>
+    const QUESTIONS = [
+      { topic: "HTML", q: "¿Qué etiqueta es semánticamente más adecuada para la navegación principal?", options: ["<nav>", "<div>", "<span>", "<section>"], answer: 0 },
+      { topic: "HTML", q: "¿Cuál es el orden mínimo correcto de una estructura HTML5 básica?", options: ["<!doctype html>, <html>, <head>, <body>", "<html>, <head>, <body>", "<!doctype html>, <head>, <body>", "<body>, <head>, <html>"], answer: 0 },
+      { topic: "HTML", q: "¿Qué atributo vincula correctamente una etiqueta <label> con un <input>?", options: ["for", "name", "idref", "target"], answer: 0 },
+      { topic: "HTML", q: "¿Qué tipo de input valida formato de correo en navegadores modernos?", options: ["type='email'", "type='mail'", "type='text-email'", "type='validator'"], answer: 0 },
+      { topic: "HTML", q: "Para mejorar accesibilidad en imágenes informativas, se debe usar:", options: ["atributo alt descriptivo", "width fijo", "data-img", "role='none' siempre"], answer: 0 },
+
+      { topic: "CSS", q: "¿Qué selector tiene mayor especificidad?", options: ["#menu .item", ".menu .item", "nav li", "*"], answer: 0 },
+      { topic: "CSS", q: "En el box model por defecto, el width declarado corresponde a:", options: ["solo contenido", "contenido + padding", "contenido + border", "todo incluyendo margin"], answer: 0 },
+      { topic: "CSS", q: "¿Qué propiedad activa un contenedor flex?", options: ["display: flex", "position: flex", "flex: 1", "layout: flex"], answer: 0 },
+      { topic: "CSS", q: "¿Qué módulo es más adecuado para maquetaciones bidimensionales complejas?", options: ["CSS Grid", "Float", "Inline-block", "Position absolute"], answer: 0 },
+      { topic: "CSS", q: "¿Qué técnica ayuda al responsive design?", options: ["media queries", "usar solo px", "desactivar viewport", "tablas para layout"], answer: 0 },
+
+      { topic: "Color", q: "¿Qué colores son primarios en el círculo cromático tradicional (RYB)?", options: ["Rojo, amarillo y azul", "Rojo, verde y azul", "Cian, magenta y amarillo", "Naranja, verde y violeta"], answer: 0 },
+      { topic: "Color", q: "Un color secundario se obtiene al mezclar:", options: ["dos primarios", "un primario y un terciario", "blanco y negro", "dos neutros"], answer: 0 },
+      { topic: "Color", q: "Una armonía complementaria usa colores:", options: ["opuestos en el círculo cromático", "adyacentes", "del mismo matiz", "solo fríos"], answer: 0 },
+      { topic: "Color", q: "Para asegurar legibilidad de texto, lo más importante es:", options: ["contraste suficiente fondo/texto", "usar solo colores saturados", "evitar tipografía sans-serif", "quitar espacios"], answer: 0 },
+      { topic: "Color", q: "En psicología del color, ¿qué suele transmitir el azul en interfaces?", options: ["confianza y calma", "peligro urgente", "caos", "aleatoriedad"], answer: 0 },
+
+      { topic: "UX", q: "¿Cuál principio de usabilidad pide que el sistema informe lo que sucede?", options: ["Visibilidad del estado del sistema", "Ley de Fitts", "Diseño brutalista", "Efecto Von Restorff"], answer: 0 },
+      { topic: "UX", q: "La jerarquía visual busca principalmente:", options: ["guiar atención por prioridad", "mostrar todo igual", "quitar contraste", "eliminar tipografía"], answer: 0 },
+      { topic: "UX", q: "Un buen feedback al usuario en formularios sería:", options: ["mensaje claro de éxito/error", "silencio total", "recargar página sin aviso", "ocultar botones"], answer: 0 },
+      { topic: "UX", q: "La consistencia en UX implica:", options: ["patrones y comportamientos predecibles", "cambiar navegación en cada pantalla", "romper convenciones siempre", "múltiples estilos sin reglas"], answer: 0 },
+      { topic: "UX", q: "Diseño centrado en el usuario significa:", options: ["iterar según necesidades y pruebas con usuarios", "diseñar solo por gustos del equipo", "evitar investigación", "priorizar complejidad visual"], answer: 0 },
+    ];
+
+    const topicMap = {
+      HTML: "HTML",
+      CSS: "CSS",
+      Color: "Teoría del color",
+      UX: "UX básico",
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const intro = $("intro");
+    const quizSection = $("quizSection");
+    const resultSection = $("resultSection");
+    const quizForm = $("quizForm");
+    const progressText = $("progressText");
+    const progressPercent = $("progressPercent");
+    const progressBar = $("progressBar");
+
+    const appState = {
+      user: null,
+      answers: new Array(QUESTIONS.length).fill(null),
+      result: null,
+    };
+
+    function buildQuiz() {
+      quizForm.innerHTML = "";
+      QUESTIONS.forEach((item, idx) => {
+        const wrapper = document.createElement("article");
+        wrapper.className = "q-card";
+
+        const topicLabel = document.createElement("div");
+        topicLabel.className = "q-head";
+        topicLabel.textContent = `${item.topic} · Pregunta ${idx + 1}`;
+
+        const p = document.createElement("p");
+        p.className = "q-text";
+        p.textContent = item.q;
+
+        wrapper.appendChild(topicLabel);
+        wrapper.appendChild(p);
+
+        item.options.forEach((opt, optIdx) => {
+          const label = document.createElement("label");
+          label.className = "option";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `q_${idx}`;
+          input.value = optIdx;
+          input.addEventListener("change", () => {
+            appState.answers[idx] = Number(input.value);
+            updateProgress();
+          });
+
+          const span = document.createElement("span");
+          span.textContent = opt;
+
+          label.appendChild(input);
+          label.appendChild(span);
+          wrapper.appendChild(label);
+        });
+
+        quizForm.appendChild(wrapper);
+      });
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answered = appState.answers.filter((a) => a !== null).length;
+      const total = QUESTIONS.length;
+      const pct = Math.round((answered / total) * 100);
+      progressText.textContent = `${answered} / ${total} respondidas`;
+      progressPercent.textContent = `${pct}%`;
+      progressBar.style.width = `${pct}%`;
+    }
+
+    function computeResults() {
+      const byTopic = {
+        HTML: { ok: 0, total: 0 },
+        CSS: { ok: 0, total: 0 },
+        Color: { ok: 0, total: 0 },
+        UX: { ok: 0, total: 0 },
+      };
+
+      const review = QUESTIONS.map((q, i) => {
+        const userAnswer = appState.answers[i];
+        const isCorrect = userAnswer === q.answer;
+        byTopic[q.topic].total += 1;
+        if (isCorrect) byTopic[q.topic].ok += 1;
+        return {
+          index: i + 1,
+          topic: q.topic,
+          question: q.q,
+          selected: userAnswer !== null ? q.options[userAnswer] : "Sin responder",
+          correct: q.options[q.answer],
+          isCorrect,
+        };
+      });
+
+      const totalOk = review.filter((r) => r.isCorrect).length;
+      const total = QUESTIONS.length;
+      const percent = Math.round((totalOk / total) * 100);
+      const passed = percent >= 70;
+
+      return { byTopic, totalOk, total, percent, passed, review };
+    }
+
+    function renderResults(result) {
+      const banner = $("resultBanner");
+      banner.className = `result-banner ${result.passed ? "pass" : "fail"}`;
+      banner.textContent = result.passed ? "APROBADO" : "REPROBADO";
+
+      const summary = $("summary");
+      summary.innerHTML = "";
+
+      Object.entries(result.byTopic).forEach(([key, val]) => {
+        const pct = Math.round((val.ok / val.total) * 100);
+        const box = document.createElement("div");
+        box.className = "score-item";
+        box.innerHTML = `<small>${topicMap[key]}</small><strong>${val.ok} / ${val.total} (${pct}%)</strong>`;
+        summary.appendChild(box);
+      });
+
+      const totalBox = document.createElement("div");
+      totalBox.className = "score-item";
+      totalBox.innerHTML = `<small>Puntaje total</small><strong>${result.totalOk} / ${result.total} (${result.percent}%)</strong>`;
+      summary.appendChild(totalBox);
+
+      const statusBox = document.createElement("div");
+      statusBox.className = "score-item";
+      statusBox.innerHTML = `<small>Estado</small><strong style="color:${result.passed ? "#16a34a" : "#dc2626"}">${result.passed ? "APROBADO" : "REPROBADO"}</strong>`;
+      summary.appendChild(statusBox);
+
+      const reviewList = $("reviewList");
+      reviewList.innerHTML = "";
+      result.review.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = `review-item ${item.isCorrect ? "ok" : "bad"}`;
+        div.innerHTML = `
+          <strong>${item.index}. [${item.topic}] ${item.question}</strong><br>
+          <span>Tu respuesta: ${item.selected}</span><br>
+          <span>Respuesta correcta: ${item.correct}</span><br>
+          <span class="status ${item.isCorrect ? "ok" : "bad"}">${item.isCorrect ? "Correcta" : "Incorrecta"}</span>
+        `;
+        reviewList.appendChild(div);
+      });
+    }
+
+    function validateUserData() {
+      const name = $("fullName").value.trim();
+      const email = $("email").value.trim();
+      const date = $("date").value;
+
+      if (!name || !email || !date) {
+        alert("Por favor completa nombre, correo y fecha antes de iniciar.");
+        return null;
+      }
+
+      const mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!mailOk) {
+        alert("Ingresa un correo válido.");
+        return null;
+      }
+      return { name, email, date };
+    }
+
+    async function generatePDFAndSendEmail() {
+      if (!appState.result || !appState.user) return;
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const { user, result } = appState;
+      let y = 15;
+
+      const line = (text, gap = 7) => {
+        doc.text(text, 14, y);
+        y += gap;
+      };
+
+      doc.setFontSize(16);
+      line("Reporte de Evaluación Fullstack", 10);
+      doc.setFontSize(11);
+      line(`Nombre: ${user.name}`);
+      line(`Correo: ${user.email}`);
+      line(`Fecha: ${user.date}`);
+      line(`Estado: ${result.passed ? "APROBADO" : "REPROBADO"}`);
+      line(`Puntaje total: ${result.totalOk}/${result.total} (${result.percent}%)`, 10);
+
+      line("Puntaje por tema:");
+      Object.entries(result.byTopic).forEach(([key, val]) => {
+        const pct = Math.round((val.ok / val.total) * 100);
+        line(`- ${topicMap[key]}: ${val.ok}/${val.total} (${pct}%)`);
+      });
+
+      y += 2;
+      line("Detalle de respuestas:");
+      result.review.forEach((item) => {
+        if (y > 270) {
+          doc.addPage();
+          y = 15;
+        }
+        const mark = item.isCorrect ? "OK" : "X";
+        const detail = `${item.index}. [${item.topic}] ${mark} | Tu resp: ${item.selected} | Correcta: ${item.correct}`;
+        const splitted = doc.splitTextToSize(detail, 180);
+        doc.text(splitted, 14, y);
+        y += (splitted.length * 6);
+      });
+
+      doc.save(`resultado-evaluacion-${user.name.replace(/\s+/g, "_")}.pdf`);
+
+      const emailMsg = $("emailMsg");
+      emailMsg.classList.remove("hidden");
+      emailMsg.textContent = "Enviando correo con resultados...";
+
+      try {
+        // REEMPLAZAR CON TU PUBLIC_KEY
+        emailjs.init("REEMPLAZAR_CON_TU_PUBLIC_KEY");
+
+        const payload = {
+          to_name: user.name,
+          to_email: user.email,
+          cc_email: "carotj@gmail.com",
+          eval_date: user.date,
+          total_score: `${result.totalOk}/${result.total} (${result.percent}%)`,
+          status: result.passed ? "APROBADO" : "REPROBADO",
+          score_html: `${result.byTopic.HTML.ok}/5`,
+          score_css: `${result.byTopic.CSS.ok}/5`,
+          score_color: `${result.byTopic.Color.ok}/5`,
+          score_ux: `${result.byTopic.UX.ok}/5`,
+        };
+
+        // REEMPLAZAR CON TU SERVICE_ID y REEMPLAZAR CON TU TEMPLATE_ID
+        await emailjs.send("REEMPLAZAR_CON_TU_SERVICE_ID", "REEMPLAZAR_CON_TU_TEMPLATE_ID", payload);
+        emailMsg.textContent = "Correo enviado correctamente al evaluado (con copia a carotj@gmail.com).";
+      } catch (err) {
+        console.error(err);
+        emailMsg.textContent = "No se pudo enviar el correo automáticamente. Configura EmailJS (SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY) y vuelve a intentar.";
+      }
+    }
+
+    $("startBtn").addEventListener("click", () => {
+      const user = validateUserData();
+      if (!user) return;
+      appState.user = user;
+      intro.classList.add("hidden");
+      quizSection.classList.remove("hidden");
+      resultSection.classList.add("hidden");
+      buildQuiz();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("submitBtn").addEventListener("click", () => {
+      const unanswered = appState.answers.filter((a) => a === null).length;
+      if (unanswered > 0) {
+        const cont = confirm(`Te faltan ${unanswered} preguntas por responder. ¿Deseas finalizar de todos modos?`);
+        if (!cont) return;
+      }
+
+      appState.result = computeResults();
+      renderResults(appState.result);
+      quizSection.classList.add("hidden");
+      resultSection.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("pdfBtn").addEventListener("click", generatePDFAndSendEmail);
+
+    $("restartBtn").addEventListener("click", () => {
+      appState.answers = new Array(QUESTIONS.length).fill(null);
+      appState.result = null;
+      $("emailMsg").classList.add("hidden");
+      intro.classList.remove("hidden");
+      quizSection.classList.add("hidden");
+      resultSection.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("date").value = new Date().toISOString().split("T")[0];
+  </script>
+</body>
+</html>
