@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evaluación Fullstack: HTML, CSS, Color y UX</title>
+  <title>Evaluación Interactiva Ficha 3409609</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -248,8 +248,8 @@
 <body>
   <main class="container">
     <header class="header">
-      <h1>Evaluación Interactiva Fullstack</h1>
-      <p class="subtitle">HTML, CSS, teoría del color y UX básico. Completa los datos, responde 20 preguntas y genera el informe en PDF.</p>
+      <h1>Evaluación Interactiva Ficha 3409609</h1>
+      <p class="subtitle">Completa los datos, responde 10 preguntas y genera el informe en PDF.</p>
     </header>
 
     <section id="intro" class="card">
@@ -304,29 +304,22 @@
 
   <script>
     const QUESTIONS = [
-      { topic: "HTML", q: "¿Qué etiqueta es semánticamente más adecuada para la navegación principal?", options: ["<nav>", "<div>", "<span>", "<section>"], answer: 0 },
-      { topic: "HTML", q: "¿Cuál es el orden mínimo correcto de una estructura HTML5 básica?", options: ["<!doctype html>, <html>, <head>, <body>", "<html>, <head>, <body>", "<!doctype html>, <head>, <body>", "<body>, <head>, <html>"], answer: 0 },
-      { topic: "HTML", q: "¿Qué atributo vincula correctamente una etiqueta <label> con un <input>?", options: ["for", "name", "idref", "target"], answer: 0 },
-      { topic: "HTML", q: "¿Qué tipo de input valida formato de correo en navegadores modernos?", options: ["type='email'", "type='mail'", "type='text-email'", "type='validator'"], answer: 0 },
-      { topic: "HTML", q: "Para mejorar accesibilidad en imágenes informativas, se debe usar:", options: ["atributo alt descriptivo", "width fijo", "data-img", "role='none' siempre"], answer: 0 },
-
-      { topic: "CSS", q: "¿Qué selector tiene mayor especificidad?", options: ["#menu .item", ".menu .item", "nav li", "*"], answer: 0 },
-      { topic: "CSS", q: "En el box model por defecto, el width declarado corresponde a:", options: ["solo contenido", "contenido + padding", "contenido + border", "todo incluyendo margin"], answer: 0 },
-      { topic: "CSS", q: "¿Qué propiedad activa un contenedor flex?", options: ["display: flex", "position: flex", "flex: 1", "layout: flex"], answer: 0 },
-      { topic: "CSS", q: "¿Qué módulo es más adecuado para maquetaciones bidimensionales complejas?", options: ["CSS Grid", "Float", "Inline-block", "Position absolute"], answer: 0 },
-      { topic: "CSS", q: "¿Qué técnica ayuda al responsive design?", options: ["media queries", "usar solo px", "desactivar viewport", "tablas para layout"], answer: 0 },
-
-      { topic: "Color", q: "¿Qué colores son primarios en el círculo cromático tradicional (RYB)?", options: ["Rojo, amarillo y azul", "Rojo, verde y azul", "Cian, magenta y amarillo", "Naranja, verde y violeta"], answer: 0 },
-      { topic: "Color", q: "Un color secundario se obtiene al mezclar:", options: ["dos primarios", "un primario y un terciario", "blanco y negro", "dos neutros"], answer: 0 },
-      { topic: "Color", q: "Una armonía complementaria usa colores:", options: ["opuestos en el círculo cromático", "adyacentes", "del mismo matiz", "solo fríos"], answer: 0 },
-      { topic: "Color", q: "Para asegurar legibilidad de texto, lo más importante es:", options: ["contraste suficiente fondo/texto", "usar solo colores saturados", "evitar tipografía sans-serif", "quitar espacios"], answer: 0 },
-      { topic: "Color", q: "En psicología del color, ¿qué suele transmitir el azul en interfaces?", options: ["confianza y calma", "peligro urgente", "caos", "aleatoriedad"], answer: 0 },
-
-      { topic: "UX", q: "¿Cuál principio de usabilidad pide que el sistema informe lo que sucede?", options: ["Visibilidad del estado del sistema", "Ley de Fitts", "Diseño brutalista", "Efecto Von Restorff"], answer: 0 },
-      { topic: "UX", q: "La jerarquía visual busca principalmente:", options: ["guiar atención por prioridad", "mostrar todo igual", "quitar contraste", "eliminar tipografía"], answer: 0 },
-      { topic: "UX", q: "Un buen feedback al usuario en formularios sería:", options: ["mensaje claro de éxito/error", "silencio total", "recargar página sin aviso", "ocultar botones"], answer: 0 },
-      { topic: "UX", q: "La consistencia en UX implica:", options: ["patrones y comportamientos predecibles", "cambiar navegación en cada pantalla", "romper convenciones siempre", "múltiples estilos sin reglas"], answer: 0 },
-      { topic: "UX", q: "Diseño centrado en el usuario significa:", options: ["iterar según necesidades y pruebas con usuarios", "diseñar solo por gustos del equipo", "evitar investigación", "priorizar complejidad visual"], answer: 0 },
+      { topic: "HTML", q: "¿Qué etiqueta se usa para crear un párrafo?", options: ["<p>", "<h1>", "<div>", "<br>"], answer: 0 },
+      { topic: "CSS", q: "¿Qué propiedad cambia el color del texto?", options: ["color", "background-color", "font-size", "border"], answer: 0 },
+      { topic: "UX", q: "Si un botón no hace nada al hacer clic, ¿qué falta?", options: ["feedback al usuario", "más colores", "más texto", "otro botón"], answer: 0 },
+      { topic: "JS", q: "¿Qué pasa si hay varios alert() seguidos en el código?", options: ["se muestran uno tras otro", "solo aparece el último", "no aparece ninguno", "se ejecutan al mismo tiempo"], answer: 0 },
+      { topic: "Color", q: "¿Qué color resulta de mezclar rojo y amarillo?", options: ["naranja", "verde", "azul", "violeta"], answer: 0 },
+      { topic: "HTML", q: "¿Qué etiqueta crea un enlace?", options: ["<a>", "<link>", "<href>", "<url>"], answer: 0 },
+      { topic: "CSS", q: "¿Qué unidad es relativa al tamaño de pantalla?", options: ["%", "px", "cm", "pt"], answer: 0 },
+      { topic: "Color", q: "¿Qué se busca al usar colores con buen contraste en diseño?", options: ["facilitar la lectura", "hacer todo más brillante", "usar más colores", "decorar la página"], answer: 0 },
+      { topic: "UX", q: "¿Por qué es importante que un sistema responda rápido a las acciones del usuario?", options: ["para que el usuario entienda que su acción funcionó", "para usar más recursos", "para hacer la página más pesada", "para evitar diseño visual"], answer: 0 },
+      { topic: "JS", q: "¿En qué momento se ejecuta un alert() dentro de una página web?", options: ["cuando el navegador ejecuta esa línea de código", "solo al cerrar la página", "solo al cargar imágenes", "cuando se guarda un archivo"], answer: 0 },
+      { topic: "UX", q: "¿Qué es más importante en un formulario?", options: ["que sea fácil de entender", "que tenga muchos campos", "que sea largo", "que tenga colores fuertes"], answer: 0 },
+      { topic: "JS", q: "¿Qué evento se usa comúnmente para disparar un alert al hacer clic?", options: ["onclick", "onhover", "onloadcss", "onstyle"], answer: 0 },
+      { topic: "Color", q: "¿Cuál de estos es un color frío?", options: ["azul", "rojo", "naranja", "amarillo"], answer: 0 },
+      { topic: "HTML", q: "¿Dónde va el contenido visible de la página?", options: ["<body>", "<head>", "<title>", "<meta>"], answer: 0 },
+      { topic: "CSS", q: "¿Qué propiedad se usa para centrar con flexbox?", options: ["justify-content", "float", "display:block", "margin-left"], answer: 0 },
+      
     ];
 
     const topicMap = {
@@ -334,6 +327,7 @@
       CSS: "CSS",
       Color: "Teoría del color",
       UX: "UX básico",
+      JS: "JavaScript básico",
     };
 
     const $ = (id) => document.getElementById(id);
@@ -349,7 +343,74 @@
       user: null,
       answers: new Array(QUESTIONS.length).fill(null),
       result: null,
+      clientIp: null,
     };
+
+    const ATTEMPT_STORAGE_KEY = "evaluacion_intentos_ip";
+
+    async function getClientIp() {
+      try {
+        const response = await fetch("https://api.ipify.org?format=json");
+        const data = await response.json();
+        return data.ip;
+      } catch (err) {
+        console.warn("No se pudo obtener la IP del cliente:", err);
+        return null;
+      }
+    }
+
+    function hasAttemptForIp(ip) {
+      if (!ip) return false;
+      const stored = localStorage.getItem(ATTEMPT_STORAGE_KEY);
+      if (!stored) return false;
+      try {
+        const ips = JSON.parse(stored);
+        return Array.isArray(ips) && ips.includes(ip);
+      } catch (err) {
+        return false;
+      }
+    }
+
+    function recordIpAttempt(ip) {
+      if (!ip) return;
+      const stored = localStorage.getItem(ATTEMPT_STORAGE_KEY);
+      let ips = [];
+      if (stored) {
+        try {
+          ips = JSON.parse(stored) || [];
+        } catch (err) {
+          ips = [];
+        }
+      }
+      if (!ips.includes(ip)) {
+        ips.push(ip);
+        localStorage.setItem(ATTEMPT_STORAGE_KEY, JSON.stringify(ips));
+      }
+    }
+
+    async function ensureSingleAttempt() {
+      const ip = await getClientIp();
+      appState.clientIp = ip;
+      if (ip && hasAttemptForIp(ip)) {
+        alert("Esta IP ya realizó un intento. No se puede iniciar otra evaluación.");
+        return false;
+      }
+      if (!ip && localStorage.getItem("evaluacion_intento_local") === "true") {
+        alert("Ya se detectó un intento en este equipo. No se puede iniciar otra evaluación.");
+        return false;
+      }
+      return true;
+    }
+
+    function markAttemptDone() {
+      if (appState.clientIp) {
+        recordIpAttempt(appState.clientIp);
+      } else {
+        localStorage.setItem("evaluacion_intento_local", "true");
+      }
+    }
+
+    let quizActive = false;
 
     function buildQuiz() {
       quizForm.innerHTML = "";
@@ -409,6 +470,7 @@
         CSS: { ok: 0, total: 0 },
         Color: { ok: 0, total: 0 },
         UX: { ok: 0, total: 0 },
+        JS: { ok: 0, total: 0 },
       };
 
       const review = QUESTIONS.map((q, i) => {
@@ -493,9 +555,92 @@
       return { name, email, date };
     }
 
-    async function generatePDFAndSendEmail() {
-      if (!appState.result || !appState.user) return;
+    function createPdfDataUri(result, user) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let y = 15;
 
+      const line = (text, gap = 7) => {
+        doc.text(text, 14, y);
+        y += gap;
+      };
+
+      doc.setFontSize(16);
+      line("Reporte de Evaluación Ficha 3409609", 10);
+      doc.setFontSize(11);
+      line(`Nombre: ${user.name}`);
+      line(`Correo: ${user.email}`);
+      line(`Fecha: ${user.date}`);
+      line(`Estado: ${result.passed ? "APROBADO" : "REPROBADO"}`);
+      line(`Puntaje total: ${result.totalOk}/${result.total} (${result.percent}%)`, 10);
+
+      line("Puntaje por tema:");
+      Object.entries(result.byTopic).forEach(([key, val]) => {
+        const pct = Math.round((val.ok / val.total) * 100);
+        line(`- ${topicMap[key]}: ${val.ok}/${val.total} (${pct}%)`);
+      });
+
+      y += 2;
+      line("Detalle de respuestas:");
+      result.review.forEach((item) => {
+        if (y > 270) {
+          doc.addPage();
+          y = 15;
+        }
+        const mark = item.isCorrect ? "OK" : "X";
+        const detail = `${item.index}. [${item.topic}] ${mark} | Tu resp: ${item.selected} | Correcta: ${item.correct}`;
+        const splitted = doc.splitTextToSize(detail, 180);
+        doc.text(splitted, 14, y);
+        y += (splitted.length * 6);
+      });
+
+      return doc.output("datauristring");
+    }
+
+    async function sendEvaluationEmail({ subject, message, result, attachPdf = false }) {
+      if (!appState.user) return false;
+
+      const emailMsg = $("emailMsg");
+      emailMsg.classList.remove("hidden");
+      emailMsg.textContent = "Enviando correo con resultados...";
+
+      const payload = {
+        to_name: "Carotj",
+        to_email: "carotj@gmail.com",
+        cc_email: appState.user.email,
+        report_subject: subject,
+        report_message: message,
+        student_name: appState.user.name,
+        student_email: appState.user.email,
+        evaluation_date: appState.user.date,
+        total_score: result ? `${result.totalOk}/${result.total} (${result.percent}%)` : "N/A",
+        status: result ? (result.passed ? "APROBADO" : "REPROBADO") : "N/A",
+        score_html: result ? `${result.byTopic.HTML.ok}/${result.byTopic.HTML.total}` : "N/A",
+        score_css: result ? `${result.byTopic.CSS.ok}/${result.byTopic.CSS.total}` : "N/A",
+        score_color: result ? `${result.byTopic.Color.ok}/${result.byTopic.Color.total}` : "N/A",
+        score_ux: result ? `${result.byTopic.UX.ok}/${result.byTopic.UX.total}` : "N/A",
+      };
+
+      if (attachPdf && result) {
+        const pdfDataUri = createPdfDataUri(result, appState.user);
+        payload.attachment = pdfDataUri;
+        payload.attachment_name = `resultado-evaluacion-${appState.user.name.replace(/\s+/g, "_")}.pdf`;
+      }
+
+      try {
+        emailjs.init("REEMPLAZAR_CON_TU_PUBLIC_KEY");
+        await emailjs.send("REEMPLAZAR_CON_TU_SERVICE_ID", "REEMPLAZAR_CON_TU_TEMPLATE_ID", payload);
+        emailMsg.textContent = "Correo enviado correctamente a carotj@gmail.com.";
+        return true;
+      } catch (err) {
+        console.error(err);
+        emailMsg.textContent = "No se pudo enviar el correo automáticamente. Configura EmailJS (SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY) y vuelve a intentar.";
+        return false;
+      }
+    }
+
+    function generatePDF() {
+      if (!appState.result || !appState.user) return;
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       const { user, result } = appState;
@@ -507,7 +652,7 @@
       };
 
       doc.setFontSize(16);
-      line("Reporte de Evaluación Fullstack", 10);
+      line("Reporte de Evaluación Ficha 3409609", 10);
       doc.setFontSize(11);
       line(`Nombre: ${user.name}`);
       line(`Correo: ${user.email}`);
@@ -536,41 +681,104 @@
       });
 
       doc.save(`resultado-evaluacion-${user.name.replace(/\s+/g, "_")}.pdf`);
+    }
 
-      const emailMsg = $("emailMsg");
-      emailMsg.classList.remove("hidden");
-      emailMsg.textContent = "Enviando correo con resultados...";
-
+    async function notifyInstructor(reason) {
+      if (!appState.user) return;
       try {
-        // REEMPLAZAR CON TU PUBLIC_KEY
         emailjs.init("REEMPLAZAR_CON_TU_PUBLIC_KEY");
-
-        const payload = {
-          to_name: user.name,
-          to_email: user.email,
-          cc_email: "carotj@gmail.com",
-          eval_date: user.date,
-          total_score: `${result.totalOk}/${result.total} (${result.percent}%)`,
-          status: result.passed ? "APROBADO" : "REPROBADO",
-          score_html: `${result.byTopic.HTML.ok}/5`,
-          score_css: `${result.byTopic.CSS.ok}/5`,
-          score_color: `${result.byTopic.Color.ok}/5`,
-          score_ux: `${result.byTopic.UX.ok}/5`,
-        };
-
-        // REEMPLAZAR CON TU SERVICE_ID y REEMPLAZAR CON TU TEMPLATE_ID
-        await emailjs.send("REEMPLAZAR_CON_TU_SERVICE_ID", "REEMPLAZAR_CON_TU_TEMPLATE_ID", payload);
-        emailMsg.textContent = "Correo enviado correctamente al evaluado (con copia a carotj@gmail.com).";
+        await emailjs.send("REEMPLAZAR_CON_TU_SERVICE_ID", "REEMPLAZAR_CON_TU_TEMPLATE_ID", {
+          to_name: "Carotj",
+          to_email: "carotj@gmail.com",
+          report_subject: "Alerta de posible trampa",
+          report_message: reason,
+          student_name: appState.user.name,
+          student_email: appState.user.email,
+          evaluation_date: appState.user.date,
+        });
+        console.log("Notificación enviada a carotj@gmail.com");
       } catch (err) {
-        console.error(err);
-        emailMsg.textContent = "No se pudo enviar el correo automáticamente. Configura EmailJS (SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY) y vuelve a intentar.";
+        console.error("Error enviando notificación de trampa:", err);
       }
     }
 
-    $("startBtn").addEventListener("click", () => {
+    async function endQuizSession(message) {
+      quizActive = false;
+      appState.answers = new Array(QUESTIONS.length).fill(null);
+      appState.result = null;
+      $("emailMsg").classList.add("hidden");
+      intro.classList.remove("hidden");
+      quizSection.classList.add("hidden");
+      resultSection.classList.add("hidden");
+      if (message) {
+        alert(message);
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      notifyInstructor(message || "Se detectó salida de ventana/alt+tab durante la evaluación.");
+    }
+
+    window.addEventListener("beforeunload", (event) => {
+      if (quizActive && !appState.result) {
+        event.preventDefault();
+        event.returnValue = "Si sales ahora, la evaluación se cancelará.";
+      }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden" && quizActive && !appState.result) {
+        endQuizSession("Has salido de la ventana, cambiado de pestaña o usado Alt+Tab. La evaluación se canceló.");
+      }
+    });
+
+    window.addEventListener("blur", () => {
+      if (quizActive && !appState.result) {
+        endQuizSession("Se perdió el foco de la ventana, por lo que la evaluación se canceló.");
+      }
+    });
+
+    function disableCodeAccess() {
+      document.addEventListener("contextmenu", (event) => {
+        if (quizActive && !appState.result) {
+          event.preventDefault();
+          alert("No está permitido inspeccionar el código durante la evaluación. Esto será reportado.");
+          notifyInstructor("Intento de inspección de código con click derecho durante la evaluación.");
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        const key = event.key.toUpperCase();
+        const isForbidden =
+          key === "F12" ||
+          (event.ctrlKey && event.shiftKey && ["I", "J", "C"].includes(key)) ||
+          (event.ctrlKey && key === "U") ||
+          (event.ctrlKey && key === "S") ||
+          (event.ctrlKey && key === "P");
+
+        if (isForbidden) {
+          event.preventDefault();
+          event.stopPropagation();
+          if (quizActive && !appState.result) {
+            alert("No está permitido inspeccionar el código durante la evaluación. Esto será reportado.");
+            notifyInstructor(`Intento de inspección de código detectado: ${event.key}`);
+          }
+        }
+      });
+
+      document.addEventListener("selectstart", (event) => {
+        event.preventDefault();
+      });
+    }
+
+    disableCodeAccess();
+
+    $("startBtn").addEventListener("click", async () => {
       const user = validateUserData();
       if (!user) return;
+      const canStart = await ensureSingleAttempt();
+      if (!canStart) return;
+      markAttemptDone();
       appState.user = user;
+      quizActive = true;
       intro.classList.add("hidden");
       quizSection.classList.remove("hidden");
       resultSection.classList.add("hidden");
@@ -578,7 +786,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    $("submitBtn").addEventListener("click", () => {
+    $("submitBtn").addEventListener("click", async () => {
       const unanswered = appState.answers.filter((a) => a === null).length;
       if (unanswered > 0) {
         const cont = confirm(`Te faltan ${unanswered} preguntas por responder. ¿Deseas finalizar de todos modos?`);
@@ -587,12 +795,20 @@
 
       appState.result = computeResults();
       renderResults(appState.result);
+      quizActive = false;
       quizSection.classList.add("hidden");
       resultSection.classList.remove("hidden");
       window.scrollTo({ top: 0, behavior: "smooth" });
+
+      await sendEvaluationEmail({
+        subject: "Evaluación finalizada",
+        message: "La evaluación se completó y se adjunta el reporte en PDF.",
+        result: appState.result,
+        attachPdf: true,
+      });
     });
 
-    $("pdfBtn").addEventListener("click", generatePDFAndSendEmail);
+    $("pdfBtn").addEventListener("click", generatePDF);
 
     $("restartBtn").addEventListener("click", () => {
       appState.answers = new Array(QUESTIONS.length).fill(null);
