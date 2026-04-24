@@ -3,358 +3,356 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhakti Book Marathon LATAM</title>
+  <title>Maratón Bhakti LATAM</title>
   <style>
     :root {
-      --bg: #f5f7ff;
-      --card: #fff;
-      --line: #dbe3ff;
-      --text: #182033;
-      --muted: #60708f;
-      --brand: #4f46e5;
-      --brand-dark: #3730a3;
-      --ok: #159947;
-      --warn: #c2410c;
+      --bg: #070b1a;
+      --bg-2: #101830;
+      --panel: rgba(16, 24, 48, 0.75);
+      --line: rgba(148, 163, 184, 0.25);
+      --text: #e5edff;
+      --muted: #a6b3d7;
+      --brand: #7c3aed;
+      --brand-2: #22d3ee;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
     }
 
     * { box-sizing: border-box; }
+    html, body { margin: 0; }
 
     body {
-      margin: 0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
       color: var(--text);
+      background:
+        radial-gradient(circle at 5% 10%, rgba(34,211,238,.22), transparent 30%),
+        radial-gradient(circle at 90% 0%, rgba(124,58,237,.25), transparent 28%),
+        linear-gradient(180deg, #070b1a, #0b1022 35%, #090f1f 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .app {
-      width: min(1200px, 94vw);
-      margin: 1.4rem auto 3rem;
+    .container {
+      width: min(1260px, 95vw);
+      margin: 1rem auto 2rem;
       display: grid;
       gap: 1rem;
     }
 
-    .hero {
-      border: 1px solid #c7d2fe;
-      background: linear-gradient(120deg, #4338ca, #4f46e5);
-      border-radius: 18px;
-      color: #fff;
-      padding: 1.1rem 1.2rem;
-      box-shadow: 0 10px 28px rgba(67, 56, 202, 0.25);
-    }
-
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(1.25rem, 2.2vw, 2rem);
-      letter-spacing: -0.02em;
-    }
-
-    .hero p {
-      margin: .55rem 0 0;
-      opacity: .95;
-    }
-
-    .kpi-grid,
-    .two-col,
-    .three-col {
-      display: grid;
-      gap: .9rem;
-    }
-
-    .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .two-col { grid-template-columns: 1.1fr .9fr; }
-    .three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    .card {
-      background: var(--card);
+    .glass {
       border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 1rem 1.2rem;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34,211,238,.28), transparent 70%);
+      pointer-events: none;
+    }
+
+    h1 { margin: .15rem 0; font-size: clamp(1.2rem, 2.3vw, 2rem); }
+    p { margin: .3rem 0; }
+
+    .hero-actions {
+      display: flex;
+      gap: .55rem;
+      flex-wrap: wrap;
+      margin-top: .8rem;
+    }
+
+    .hero-right {
+      border: 1px solid rgba(148,163,184,.22);
       border-radius: 14px;
-      padding: .95rem;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+      padding: .8rem;
+      background: rgba(2,6,23,.35);
     }
 
-    .kpi small {
-      color: var(--muted);
-      display: block;
-      font-size: .8rem;
-      margin-bottom: .25rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .03em;
+    .progress-ring {
+      width: 126px;
+      height: 126px;
+      margin: .2rem auto;
+      position: relative;
     }
 
-    .kpi strong {
-      font-size: clamp(1.1rem, 2vw, 1.55rem);
-      color: #1e1b4b;
-    }
+    .progress-ring svg { transform: rotate(-90deg); }
 
-    h2 {
-      margin: 0 0 .8rem;
-      font-size: 1.1rem;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    .form-grid {
+    .progress-ring strong {
+      position: absolute;
+      inset: 0;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .65rem;
+      place-items: center;
+      font-size: 1.2rem;
     }
 
-    .form-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .65rem;
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    .chip {
+      border: 1px solid rgba(148,163,184,.28);
+      border-radius: 999px;
+      padding: .2rem .55rem;
+      font-size: .78rem;
+      color: var(--muted);
+      background: rgba(15,23,42,.3);
     }
 
-    label {
-      font-size: .86rem;
-      font-weight: 700;
-      margin-bottom: .25rem;
-      display: block;
-      color: #243145;
-    }
+    .kpis { display: grid; gap: .8rem; grid-template-columns: repeat(4,minmax(0,1fr)); }
 
-    input, select, button, textarea {
+    .kpi { padding: .85rem; }
+    .kpi small { color: var(--muted); display: block; font-weight: 700; margin-bottom: .3rem; }
+    .kpi strong { font-size: clamp(1.1rem, 2vw, 1.7rem); }
+
+    .layout { display: grid; gap: .9rem; grid-template-columns: 1.1fr .9fr; }
+    .panel { padding: .95rem; }
+
+    .form-grid { display: grid; gap: .55rem; grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .form-grid-3 { display: grid; gap: .55rem; grid-template-columns: repeat(3,minmax(0,1fr)); }
+
+    label { font-size: .82rem; font-weight: 700; color: #d5def8; margin-bottom: .2rem; display: block; }
+
+    input, select, textarea, button {
       width: 100%;
-      border: 1px solid #cbd5e1;
+      border: 1px solid rgba(148,163,184,.35);
       border-radius: 10px;
+      background: rgba(15,23,42,.45);
+      color: var(--text);
       font: inherit;
-      padding: .64rem .72rem;
+      padding: .62rem .68rem;
       outline: none;
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, .15);
+      border-color: var(--brand-2);
+      box-shadow: 0 0 0 3px rgba(34,211,238,.18);
     }
 
     button {
-      border: 0;
-      background: var(--brand);
-      color: #fff;
       cursor: pointer;
+      border: 0;
       font-weight: 700;
-      transition: .2s background;
+      background: linear-gradient(120deg, var(--brand), #4f46e5);
+      transition: transform .12s ease, filter .2s ease;
     }
+    button:hover { filter: brightness(1.08); }
+    button:active { transform: translateY(1px); }
+    button.secondary { background: rgba(51,65,85,.8); }
+    button.cyan { background: linear-gradient(120deg, #0891b2, #22d3ee); color: #06202b; }
 
-    button:hover { background: var(--brand-dark); }
+    .btn-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .65rem; }
+    .btn-row > * { flex: 1 1 0; }
 
-    button.secondary { background: #334155; }
-
-    .row {
-      display: flex;
-      gap: .6rem;
-      flex-wrap: wrap;
-      margin-top: .7rem;
-    }
-
-    .row > * {
-      flex: 1 1 auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .9rem;
-    }
-
-    th, td {
-      border-bottom: 1px solid #e2e8f0;
-      padding: .55rem .35rem;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th { color: #334155; }
-
-    .pill {
-      display: inline-block;
-      font-size: .78rem;
-      border-radius: 999px;
-      padding: .2rem .55rem;
-      font-weight: 700;
-      background: #e2e8f0;
-      color: #334155;
-    }
-
-    .pill.ok {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .pill.warn {
-      background: #ffedd5;
-      color: #9a3412;
-    }
-
-    .gallery {
-      display: grid;
-      gap: .55rem;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    }
-
-    .gallery figure {
-      margin: 0;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .gallery figcaption {
-      padding: .38rem;
-      font-size: .75rem;
-      color: #475569;
-      line-height: 1.25;
-    }
-
-    .empty {
+    .dropzone {
+      border: 1px dashed rgba(34,211,238,.55);
+      border-radius: 11px;
+      padding: .75rem;
+      text-align: center;
       color: var(--muted);
-      font-size: .9rem;
-      border: 1px dashed #cbd5e1;
-      border-radius: 10px;
-      padding: .7rem;
-      background: #f8fafc;
+      background: rgba(8,47,73,.18);
+      transition: .2s;
+    }
+    .dropzone.dragging { background: rgba(8,47,73,.35); border-color: #67e8f9; }
+
+    .tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .6rem; }
+
+    .tab {
+      width: auto;
+      padding: .45rem .72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.4);
+      background: rgba(30,41,59,.7);
+      color: #c6d0ea;
+      cursor: pointer;
+      font-size: .83rem;
+      font-weight: 700;
     }
 
-    @media (max-width: 980px) {
-      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .two-col, .three-col, .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
+    .tab.active { background: rgba(124,58,237,.4); color: #fff; border-color: rgba(196,181,253,.65); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid rgba(148,163,184,.2); padding: .52rem .32rem; text-align: left; font-size: .9rem; }
+    th { color: #bfccec; }
+
+    .pill { padding: .17rem .5rem; border-radius: 999px; font-size: .75rem; font-weight: 800; }
+    .pill.ok { background: rgba(34,197,94,.2); color: #86efac; }
+    .pill.warn { background: rgba(245,158,11,.2); color: #fcd34d; }
+
+    .chart-wrap { padding: .7rem; border: 1px solid rgba(148,163,184,.24); border-radius: 12px; background: rgba(2,6,23,.45); }
+    canvas { width: 100%; height: 220px; display: block; }
+
+    .gallery { display: grid; gap: .55rem; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); max-height: 335px; overflow: auto; }
+    .gallery figure { margin: 0; border: 1px solid rgba(148,163,184,.2); border-radius: 10px; overflow: hidden; background: rgba(2,6,23,.55); }
+    .gallery img { width: 100%; height: 100px; object-fit: cover; display: block; }
+    .gallery figcaption { padding: .35rem; font-size: .74rem; color: #b7c4e5; }
+
+    .muted { color: var(--muted); font-size: .88rem; }
+    .feedback { min-height: 20px; margin-top: .45rem; }
+
+    .toast {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      min-width: 220px;
+      max-width: 340px;
+      padding: .7rem .8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,.35);
+      background: rgba(2,6,23,.9);
+      color: #e2e8f0;
+      transform: translateY(130%);
+      transition: .28s ease;
+      z-index: 99;
+    }
+    .toast.show { transform: translateY(0); }
+
+    .sparkle {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: drop 800ms ease-out forwards;
+      z-index: 90;
+    }
+
+    @keyframes drop {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(120px) scale(.4); opacity: 0; }
+    }
+
+    @media (max-width: 1040px) {
+      .hero, .layout, .kpis, .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <main class="app">
-    <section class="hero">
-      <h1>Bhakti Book Marathon LATAM</h1>
-      <p>Registro anual de distribución de libros por grupos de la comunidad Hare Krishna, con enfoque especial en la maratón de diciembre y récord continental.</p>
+  <main class="container">
+    <section class="hero glass">
+      <div>
+        <h1>🌎 Maratón Bhakti LATAM</h1>
+        <p>Una app para inspirar y medir la distribución de libros por grupos Hare Krishna todo el año, con foco total en diciembre.</p>
+        <div class="chips" id="heroChips"></div>
+        <div class="hero-actions">
+          <button id="seedBtn" class="cyan" type="button">✨ Cargar demo de 108 grupos</button>
+          <button id="clearBtn" class="secondary" type="button">🧹 Reiniciar datos</button>
+        </div>
+      </div>
+      <aside class="hero-right">
+        <p class="muted" style="margin-top:0;">Avance de capacidad (máx. 120 grupos)</p>
+        <div class="progress-ring">
+          <svg width="126" height="126" aria-hidden="true">
+            <circle cx="63" cy="63" r="50" stroke="rgba(148,163,184,.25)" stroke-width="10" fill="none"></circle>
+            <circle id="ringProgress" cx="63" cy="63" r="50" stroke="url(#grad1)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#22d3ee"/>
+                <stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <strong id="ringLabel">0%</strong>
+        </div>
+        <p class="muted" id="ringText">0 de 120 grupos registrados</p>
+      </aside>
     </section>
 
-    <section class="kpi-grid" id="kpis"></section>
+    <section class="kpis" id="kpis"></section>
 
-    <section class="two-col">
-      <article class="card">
-        <h2>Gestión de grupos</h2>
-        <p class="muted">Capacidad máxima: <strong>120 grupos</strong>. Recomendado: mínimo 108 grupos activos.</p>
+    <section class="layout">
+      <article class="panel glass">
+        <h2 style="margin-top:0;">Gestión de grupos</h2>
+        <p class="muted">Meta sugerida: 108 grupos. Límite técnico actual: 120 grupos.</p>
         <div class="form-grid">
-          <div>
-            <label for="groupName">Nombre del grupo</label>
-            <input id="groupName" type="text" placeholder="Ej. Bogotá Sankirtan" />
-          </div>
-          <div>
-            <label for="groupCountry">País</label>
-            <input id="groupCountry" type="text" placeholder="Ej. Colombia" />
-          </div>
-          <div>
-            <label for="groupCity">Ciudad</label>
-            <input id="groupCity" type="text" placeholder="Ej. Bogotá" />
-          </div>
-          <div>
-            <label for="groupLeader">Líder responsable</label>
-            <input id="groupLeader" type="text" placeholder="Ej. Bhakta Juan" />
-          </div>
+          <div><label for="groupName">Nombre del grupo</label><input id="groupName" type="text" placeholder="Ej. Medellín Sankirtan" /></div>
+          <div><label for="groupCountry">País</label><input id="groupCountry" type="text" placeholder="Ej. Colombia" /></div>
+          <div><label for="groupCity">Ciudad</label><input id="groupCity" type="text" placeholder="Ej. Medellín" /></div>
+          <div><label for="groupLeader">Líder</label><input id="groupLeader" type="text" placeholder="Ej. Bhakta Gopal" /></div>
         </div>
-        <div class="row">
-          <button id="addGroupBtn" type="button">Agregar grupo</button>
-          <button id="seedBtn" class="secondary" type="button">Crear demo con 108 grupos</button>
-          <button id="clearBtn" class="secondary" type="button">Reiniciar demo</button>
+        <div class="btn-row">
+          <button id="addGroupBtn" type="button">➕ Agregar grupo</button>
         </div>
-        <p id="groupFeedback" class="muted" aria-live="polite"></p>
+        <p id="groupFeedback" class="feedback muted" aria-live="polite"></p>
       </article>
 
-      <article class="card">
-        <h2>Registrar distribución + evidencia</h2>
+      <article class="panel glass">
+        <h2 style="margin-top:0;">Nuevo reporte de distribución</h2>
         <div class="form-grid-3">
-          <div>
-            <label for="reportGroup">Grupo</label>
-            <select id="reportGroup"></select>
-          </div>
-          <div>
-            <label for="reportDate">Fecha</label>
-            <input id="reportDate" type="date" />
-          </div>
-          <div>
-            <label for="reportBooks">Libros distribuidos</label>
-            <input id="reportBooks" type="number" min="1" step="1" placeholder="Ej. 350" />
-          </div>
+          <div><label for="reportGroup">Grupo</label><select id="reportGroup"></select></div>
+          <div><label for="reportDate">Fecha</label><input id="reportDate" type="date" /></div>
+          <div><label for="reportBooks">Libros</label><input id="reportBooks" type="number" min="1" step="1" placeholder="350" /></div>
         </div>
-        <div style="margin-top:.65rem;">
+        <div style="margin-top:.55rem;">
           <label for="reportNotes">Relación / comentarios</label>
-          <textarea id="reportNotes" rows="2" placeholder="Ej. Feria del libro, distribución en universidades, plazas, etc."></textarea>
+          <textarea id="reportNotes" rows="2" placeholder="Actividad, zona, observaciones"></textarea>
         </div>
-        <div style="margin-top:.65rem;">
-          <label for="reportPhotos">Fotos de evidencia (máx. 3, hasta 1.5MB cada una)</label>
-          <input id="reportPhotos" type="file" accept="image/*" multiple />
+        <div style="margin-top:.55rem;">
+          <label for="reportPhotos">Evidencia fotográfica</label>
+          <input id="reportPhotos" type="file" multiple accept="image/*" style="display:none;" />
+          <div id="dropzone" class="dropzone">Arrastra fotos aquí o haz clic para seleccionar (máx 3, 1.5MB c/u).</div>
         </div>
-        <div class="row">
-          <button id="saveReportBtn" type="button">Guardar reporte</button>
-        </div>
-        <p id="reportFeedback" class="muted" aria-live="polite"></p>
+        <div class="btn-row"><button id="saveReportBtn" type="button">💾 Guardar reporte</button></div>
+        <p id="reportFeedback" class="feedback muted" aria-live="polite"></p>
       </article>
     </section>
 
-    <section class="three-col">
-      <article class="card" style="grid-column: span 2;">
-        <h2>Ranking de competencia sana</h2>
-        <div class="row" style="margin-top:0; margin-bottom:.55rem;">
-          <select id="rankingMode" style="max-width:280px;">
-            <option value="year">Año actual</option>
-            <option value="december">Maratón de diciembre</option>
-            <option value="all">Histórico general</option>
-          </select>
+    <section class="layout">
+      <article class="panel glass">
+        <h2 style="margin-top:0;">Competencia sana en vivo</h2>
+        <div class="tabs">
+          <button class="tab active" data-mode="year" type="button">Año actual</button>
+          <button class="tab" data-mode="december" type="button">Maratón diciembre</button>
+          <button class="tab" data-mode="all" type="button">Histórico general</button>
         </div>
-        <div style="overflow:auto; max-height:360px;">
+        <div class="chart-wrap"><canvas id="trendChart" width="760" height="220"></canvas></div>
+        <div style="margin-top:.7rem; overflow:auto; max-height:280px;">
           <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Grupo</th>
-                <th>Ubicación</th>
-                <th>Libros</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
+            <thead><tr><th>#</th><th>Grupo</th><th>Ubicación</th><th>Libros</th><th>Estado</th></tr></thead>
             <tbody id="rankingBody"></tbody>
           </table>
         </div>
       </article>
 
-      <article class="card">
-        <h2>Evidencias recientes</h2>
+      <article class="panel glass">
+        <h2 style="margin-top:0;">Evidencias recientes</h2>
         <div id="gallery" class="gallery"></div>
       </article>
     </section>
   </main>
 
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
   <script>
-    const STORAGE_KEY = "bhakti_book_marathon_v1";
+    const STORAGE_KEY = "maraton_bhakti_latam_v2";
     const MAX_GROUPS = 120;
-    const MIN_RECOMMENDED = 108;
+    const RECOMMENDED_GROUPS = 108;
 
     const $ = (id) => document.getElementById(id);
 
-    const state = {
-      groups: [],
-      reports: [],
-    };
+    const state = { groups: [], reports: [], mode: "year" };
 
     function uid(prefix = "id") {
       return `${prefix}_${Math.random().toString(36).slice(2, 9)}${Date.now().toString(36).slice(-3)}`;
     }
 
-    function currentYear() {
-      return new Date().getFullYear();
-    }
+    function nowYear() { return new Date().getFullYear(); }
 
     function loadState() {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -364,150 +362,237 @@
         state.groups = Array.isArray(parsed.groups) ? parsed.groups : [];
         state.reports = Array.isArray(parsed.reports) ? parsed.reports : [];
       } catch (error) {
-        console.warn("No se pudieron cargar datos guardados", error);
+        console.warn("No se pudo leer almacenamiento", error);
       }
     }
 
     function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function isDecember(dateString) {
-      const date = new Date(dateString);
-      return !Number.isNaN(date.getTime()) && date.getMonth() === 11;
-    }
-
-    function isCurrentYear(dateString) {
-      const date = new Date(dateString);
-      return !Number.isNaN(date.getTime()) && date.getFullYear() === currentYear();
-    }
-
-    function computeTotals() {
-      const totalGroups = state.groups.length;
-      const allBooks = state.reports.reduce((acc, report) => acc + report.books, 0);
-      const yearBooks = state.reports.filter((report) => isCurrentYear(report.date)).reduce((acc, report) => acc + report.books, 0);
-      const decemberBooks = state.reports
-        .filter((report) => isCurrentYear(report.date) && isDecember(report.date))
-        .reduce((acc, report) => acc + report.books, 0);
-      return { totalGroups, allBooks, yearBooks, decemberBooks };
-    }
-
-    function renderKpis() {
-      const totals = computeTotals();
-      const completion = Math.round((totals.totalGroups / MAX_GROUPS) * 100);
-      const html = [
-        ["Grupos registrados", `${totals.totalGroups} / ${MAX_GROUPS}`],
-        ["Cobertura de capacidad", `${completion}%`],
-        [`Récord LATAM (${currentYear()})`, `${totals.yearBooks.toLocaleString("es-CO")} libros`],
-        ["Maratón diciembre", `${totals.decemberBooks.toLocaleString("es-CO")} libros`],
-      ]
-      .map(([label, value]) => `
-        <article class="card kpi">
-          <small>${label}</small>
-          <strong>${value}</strong>
-        </article>
-      `)
-      .join("");
-      $("kpis").innerHTML = html;
-    }
-
-    function renderGroupOptions() {
-      const select = $("reportGroup");
-      if (!state.groups.length) {
-        select.innerHTML = `<option value="">No hay grupos registrados</option>`;
-        return;
-      }
-      select.innerHTML = state.groups
-        .map((group) => `<option value="${group.id}">${group.name} · ${group.country}</option>`)
-        .join("");
-    }
-
-    function rankingByMode(mode) {
-      const map = new Map(state.groups.map((group) => [group.id, { ...group, books: 0 }]));
-      state.reports.forEach((report) => {
-        const valid =
-          mode === "all" ||
-          (mode === "year" && isCurrentYear(report.date)) ||
-          (mode === "december" && isCurrentYear(report.date) && isDecember(report.date));
-
-        if (!valid) return;
-        const group = map.get(report.groupId);
-        if (!group) return;
-        group.books += report.books;
-      });
-
-      return Array.from(map.values()).sort((a, b) => b.books - a.books);
-    }
-
-    function renderRanking() {
-      const mode = $("rankingMode").value;
-      const rows = rankingByMode(mode);
-      const body = $("rankingBody");
-
-      if (!rows.length) {
-        body.innerHTML = `<tr><td colspan="5" class="muted">Aún no hay grupos para mostrar.</td></tr>`;
-        return;
-      }
-
-      body.innerHTML = rows
-        .map((group, index) => {
-          const status = group.books > 0 ? '<span class="pill ok">Activo</span>' : '<span class="pill warn">Sin reportes</span>';
-          return `
-            <tr>
-              <td>${index + 1}</td>
-              <td><strong>${group.name}</strong><br><small class="muted">Líder: ${group.leader}</small></td>
-              <td>${group.city}, ${group.country}</td>
-              <td>${group.books.toLocaleString("es-CO")}</td>
-              <td>${status}</td>
-            </tr>
-          `;
-        })
-        .join("");
-    }
-
-    function renderGallery() {
-      const gallery = $("gallery");
-      const snapshots = state.reports
-        .flatMap((report) => report.photos.map((photo) => ({ ...photo, groupId: report.groupId, date: report.date, books: report.books })))
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(0, 12);
-
-      if (!snapshots.length) {
-        gallery.innerHTML = `<div class="empty">Aún no se han subido fotos de distribución.</div>`;
-        return;
-      }
-
-      gallery.innerHTML = snapshots
-        .map((item) => {
-          const group = state.groups.find((groupData) => groupData.id === item.groupId);
-          return `
-            <figure>
-              <img src="${item.dataUrl}" alt="Evidencia de distribución de libros" />
-              <figcaption>
-                <strong>${group ? group.name : "Grupo"}</strong><br>
-                ${item.date} · ${item.books} libros
-              </figcaption>
-            </figure>
-          `;
-        })
-        .join("");
-    }
-
-    function updateUI() {
-      renderKpis();
-      renderGroupOptions();
-      renderRanking();
-      renderGallery();
-    }
-
-    function setFeedback(id, message, level = "normal") {
-      const node = $(id);
-      node.textContent = message;
-      node.style.color = level === "error" ? "#b91c1c" : level === "success" ? "#166534" : "#60708f";
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ groups: state.groups, reports: state.reports }));
     }
 
     function normalizeText(value) {
       return value.trim().replace(/\s+/g, " ");
+    }
+
+    function isDecember(dateString) {
+      const d = new Date(dateString);
+      return !Number.isNaN(d.getTime()) && d.getMonth() === 11;
+    }
+
+    function isYear(dateString, year = nowYear()) {
+      const d = new Date(dateString);
+      return !Number.isNaN(d.getTime()) && d.getFullYear() === year;
+    }
+
+    function toast(message) {
+      const node = $("toast");
+      node.textContent = message;
+      node.classList.add("show");
+      setTimeout(() => node.classList.remove("show"), 2500);
+    }
+
+    function sparkleBurst() {
+      for (let i = 0; i < 28; i += 1) {
+        const dot = document.createElement("span");
+        dot.className = "sparkle";
+        dot.style.left = `${Math.random() * window.innerWidth}px`;
+        dot.style.top = `${20 + Math.random() * 120}px`;
+        dot.style.background = ["#22d3ee", "#7c3aed", "#22c55e", "#f59e0b"][i % 4];
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 820);
+      }
+    }
+
+    function totals() {
+      const allBooks = state.reports.reduce((sum, r) => sum + r.books, 0);
+      const thisYear = state.reports.filter((r) => isYear(r.date)).reduce((sum, r) => sum + r.books, 0);
+      const december = state.reports.filter((r) => isYear(r.date) && isDecember(r.date)).reduce((sum, r) => sum + r.books, 0);
+      const activeGroups = new Set(state.reports.filter((r) => isYear(r.date)).map((r) => r.groupId)).size;
+      return { groups: state.groups.length, allBooks, thisYear, december, activeGroups };
+    }
+
+    function animateValue(node, endValue) {
+      const startValue = Number(node.dataset.value || 0);
+      const duration = 550;
+      const start = performance.now();
+
+      function frame(ts) {
+        const progress = Math.min((ts - start) / duration, 1);
+        const value = Math.round(startValue + (endValue - startValue) * progress);
+        node.textContent = value.toLocaleString("es-CO");
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+
+      node.dataset.value = String(endValue);
+      requestAnimationFrame(frame);
+    }
+
+    function renderKpis() {
+      const t = totals();
+      const entries = [
+        ["Grupos registrados", `${t.groups}/${MAX_GROUPS}`, t.groups],
+        [`Récord LATAM ${nowYear()}`, `${t.thisYear.toLocaleString("es-CO")} libros`, t.thisYear],
+        ["Maratón diciembre", `${t.december.toLocaleString("es-CO")} libros`, t.december],
+        ["Grupos activos (año)", `${t.activeGroups.toLocaleString("es-CO")}`, t.activeGroups],
+      ];
+
+      $("kpis").innerHTML = entries.map(([label, text], idx) => `
+        <article class="kpi glass">
+          <small>${label}</small>
+          <strong id="kpi_${idx}">${text}</strong>
+        </article>
+      `).join("");
+
+      animateValue($("kpi_0"), t.groups);
+      animateValue($("kpi_1"), t.thisYear);
+      animateValue($("kpi_2"), t.december);
+      animateValue($("kpi_3"), t.activeGroups);
+
+      renderHeroProgress(t.groups);
+      renderHeroChips(t);
+    }
+
+    function renderHeroProgress(groupCount) {
+      const percentage = Math.round((groupCount / MAX_GROUPS) * 100);
+      const circumference = 314;
+      const offset = circumference - (Math.min(percentage, 100) / 100) * circumference;
+      $("ringProgress").style.strokeDashoffset = offset.toFixed(1);
+      $("ringLabel").textContent = `${percentage}%`;
+      $("ringText").textContent = `${groupCount} de ${MAX_GROUPS} grupos registrados`;
+    }
+
+    function renderHeroChips(t) {
+      const delta = Math.max(RECOMMENDED_GROUPS - t.groups, 0);
+      const chips = [
+        `Meta sugerida: ${RECOMMENDED_GROUPS}`,
+        delta > 0 ? `Faltan ${delta} grupos para la meta` : "¡Meta mínima superada!",
+        t.december > 0 ? `Diciembre activo: ${t.december.toLocaleString("es-CO")} libros` : "Aún sin reportes en diciembre",
+      ];
+      $("heroChips").innerHTML = chips.map((item) => `<span class="chip">${item}</span>`).join("");
+    }
+
+    function renderGroupSelect() {
+      const sel = $("reportGroup");
+      if (!state.groups.length) {
+        sel.innerHTML = `<option value="">No hay grupos registrados</option>`;
+        return;
+      }
+      sel.innerHTML = state.groups.map((g) => `<option value="${g.id}">${g.name} · ${g.country}</option>`).join("");
+    }
+
+    function rankingData(mode = state.mode) {
+      const buckets = new Map(state.groups.map((group) => [group.id, { ...group, books: 0 }]));
+      state.reports.forEach((report) => {
+        const valid = mode === "all" || (mode === "year" && isYear(report.date)) || (mode === "december" && isYear(report.date) && isDecember(report.date));
+        if (!valid) return;
+        const entry = buckets.get(report.groupId);
+        if (!entry) return;
+        entry.books += report.books;
+      });
+      return Array.from(buckets.values()).sort((a, b) => b.books - a.books);
+    }
+
+    function renderRanking() {
+      const rows = rankingData();
+      const body = $("rankingBody");
+      if (!rows.length) {
+        body.innerHTML = `<tr><td colspan="5" class="muted">No hay grupos todavía.</td></tr>`;
+        return;
+      }
+
+      body.innerHTML = rows.map((row, idx) => {
+        const status = row.books > 0 ? `<span class="pill ok">Activo</span>` : `<span class="pill warn">Sin reporte</span>`;
+        return `
+          <tr>
+            <td>${idx + 1}</td>
+            <td><strong>${row.name}</strong><br><small class="muted">Líder: ${row.leader}</small></td>
+            <td>${row.city}, ${row.country}</td>
+            <td>${row.books.toLocaleString("es-CO")}</td>
+            <td>${status}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function renderGallery() {
+      const gallery = $("gallery");
+      const records = state.reports
+        .flatMap((r) => r.photos.map((p) => ({ ...p, groupId: r.groupId, date: r.date, books: r.books })))
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 18);
+
+      if (!records.length) {
+        gallery.innerHTML = `<div class="muted">Sin fotos todavía. Sube evidencias para motivar a los grupos 🙌</div>`;
+        return;
+      }
+
+      gallery.innerHTML = records.map((item) => {
+        const group = state.groups.find((g) => g.id === item.groupId);
+        return `
+          <figure>
+            <img src="${item.dataUrl}" alt="Evidencia de distribución" />
+            <figcaption><strong>${group ? group.name : "Grupo"}</strong><br>${item.date} · ${item.books} libros</figcaption>
+          </figure>
+        `;
+      }).join("");
+    }
+
+    function drawTrendChart() {
+      const canvas = $("trendChart");
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      ctx.clearRect(0, 0, width, height);
+
+      const months = Array.from({ length: 12 }, (_, i) => i);
+      const values = months.map((month) => {
+        return state.reports
+          .filter((r) => isYear(r.date))
+          .filter((r) => new Date(r.date).getMonth() === month)
+          .reduce((acc, r) => acc + r.books, 0);
+      });
+
+      const max = Math.max(...values, 1);
+      const chartTop = 18;
+      const chartBottom = height - 34;
+      const barArea = chartBottom - chartTop;
+      const barWidth = width / 12 - 10;
+
+      ctx.strokeStyle = "rgba(148,163,184,.25)";
+      ctx.beginPath();
+      ctx.moveTo(0, chartBottom + .5);
+      ctx.lineTo(width, chartBottom + .5);
+      ctx.stroke();
+
+      values.forEach((val, i) => {
+        const x = i * (width / 12) + 5;
+        const h = (val / max) * barArea;
+        const y = chartBottom - h;
+
+        const grad = ctx.createLinearGradient(0, y, 0, chartBottom);
+        grad.addColorStop(0, "#22d3ee");
+        grad.addColorStop(1, "#7c3aed");
+        ctx.fillStyle = grad;
+        ctx.fillRect(x, y, barWidth, h);
+
+        ctx.fillStyle = "#b6c4e7";
+        ctx.font = "11px sans-serif";
+        ctx.fillText(String(i + 1), x + barWidth / 2 - 3, height - 14);
+      });
+    }
+
+    function refreshUI() {
+      renderKpis();
+      renderGroupSelect();
+      renderRanking();
+      renderGallery();
+      drawTrendChart();
+    }
+
+    function setFeedback(id, message, type = "normal") {
+      const node = $(id);
+      node.textContent = message;
+      node.style.color = type === "error" ? "#fecaca" : type === "success" ? "#86efac" : "#a6b3d7";
     }
 
     function addGroup() {
@@ -517,31 +602,25 @@
       const leader = normalizeText($("groupLeader").value);
 
       if (!name || !country || !city || !leader) {
-        setFeedback("groupFeedback", "Completa todos los campos del grupo.", "error");
+        setFeedback("groupFeedback", "Completa todos los campos.", "error");
         return;
       }
-
       if (state.groups.length >= MAX_GROUPS) {
-        setFeedback("groupFeedback", `Se alcanzó el límite de ${MAX_GROUPS} grupos.`, "error");
+        setFeedback("groupFeedback", `Límite alcanzado: ${MAX_GROUPS} grupos.`, "error");
         return;
       }
-
-      const alreadyExists = state.groups.some((group) => group.name.toLowerCase() === name.toLowerCase());
-      if (alreadyExists) {
-        setFeedback("groupFeedback", "Ese nombre de grupo ya existe.", "error");
+      if (state.groups.some((g) => g.name.toLowerCase() === name.toLowerCase())) {
+        setFeedback("groupFeedback", "Ese grupo ya existe.", "error");
         return;
       }
 
       state.groups.push({ id: uid("group"), name, country, city, leader, createdAt: new Date().toISOString() });
       saveState();
-      updateUI();
+      refreshUI();
       ["groupName", "groupCountry", "groupCity", "groupLeader"].forEach((id) => { $(id).value = ""; });
-
-      const recommendation = state.groups.length < MIN_RECOMMENDED
-        ? `Llevamos ${state.groups.length} grupos. Meta recomendada: ${MIN_RECOMMENDED}.`
-        : `¡Excelente! Ya superaron la meta sugerida de ${MIN_RECOMMENDED} grupos.`;
-
-      setFeedback("groupFeedback", `Grupo agregado correctamente. ${recommendation}`, "success");
+      setFeedback("groupFeedback", "Grupo agregado correctamente ✨", "success");
+      toast("Nuevo grupo agregado");
+      sparkleBurst();
     }
 
     function fileToDataUrl(file) {
@@ -555,7 +634,7 @@
 
     async function saveReport() {
       if (!state.groups.length) {
-        setFeedback("reportFeedback", "Primero debes registrar al menos un grupo.", "error");
+        setFeedback("reportFeedback", "Primero crea un grupo.", "error");
         return;
       }
 
@@ -566,30 +645,26 @@
       const files = Array.from($("reportPhotos").files || []);
 
       if (!groupId || !date || Number.isNaN(books) || books <= 0) {
-        setFeedback("reportFeedback", "Completa grupo, fecha y libros distribuidos.", "error");
+        setFeedback("reportFeedback", "Completa grupo, fecha y libros.", "error");
         return;
       }
-
       if (files.length > 3) {
-        setFeedback("reportFeedback", "Puedes cargar máximo 3 fotos por reporte.", "error");
+        setFeedback("reportFeedback", "Máximo 3 fotos por reporte.", "error");
         return;
       }
-
       const oversized = files.find((file) => file.size > 1.5 * 1024 * 1024);
       if (oversized) {
-        setFeedback("reportFeedback", `La foto ${oversized.name} supera 1.5MB.`, "error");
+        setFeedback("reportFeedback", `La foto ${oversized.name} excede 1.5MB.`, "error");
         return;
       }
 
       let photos = [];
       try {
-        photos = await Promise.all(
-          files.map(async (file) => ({
-            id: uid("photo"),
-            name: file.name,
-            dataUrl: await fileToDataUrl(file),
-          }))
-        );
+        photos = await Promise.all(files.map(async (file) => ({
+          id: uid("photo"),
+          name: file.name,
+          dataUrl: await fileToDataUrl(file),
+        })));
       } catch (error) {
         setFeedback("reportFeedback", "No se pudieron procesar las fotos.", "error");
         return;
@@ -606,96 +681,110 @@
       });
 
       saveState();
-      updateUI();
-      $("reportDate").value = new Date().toISOString().split("T")[0];
+      refreshUI();
       $("reportBooks").value = "";
       $("reportNotes").value = "";
       $("reportPhotos").value = "";
-
-      const modeHint = isDecember(date)
-        ? "¡Este reporte suma directo a la maratón de diciembre!"
-        : "Tip: en diciembre verás el impacto específico en la maratón.";
-      setFeedback("reportFeedback", `Reporte guardado con éxito. ${modeHint}`, "success");
+      setFeedback("reportFeedback", isDecember(date) ? "Reporte guardado: suma para maratón de diciembre 🎯" : "Reporte guardado con éxito ✅", "success");
+      toast("Reporte registrado");
+      sparkleBurst();
     }
 
     function seedDemoData() {
-      if (!window.confirm("Esto reemplazará los datos actuales con una demo de 108 grupos. ¿Continuar?")) {
-        return;
-      }
+      if (!window.confirm("Se cargarán 108 grupos demo. Esto reemplaza datos actuales. ¿Continuar?")) return;
 
       const countries = ["Colombia", "México", "Perú", "Chile", "Argentina", "Ecuador", "Bolivia", "Paraguay", "Uruguay", "Guatemala"];
       const cities = ["Bogotá", "CDMX", "Lima", "Santiago", "Buenos Aires", "Quito", "La Paz", "Asunción", "Montevideo", "Guatemala City"];
+      const year = nowYear();
 
-      state.groups = Array.from({ length: 108 }, (_, index) => ({
+      state.groups = Array.from({ length: 108 }, (_, i) => ({
         id: uid("group"),
-        name: `Grupo Sankirtan ${String(index + 1).padStart(3, "0")}`,
-        country: countries[index % countries.length],
-        city: cities[index % cities.length],
-        leader: `Líder ${index + 1}`,
+        name: `Grupo Sankirtan ${String(i + 1).padStart(3, "0")}`,
+        country: countries[i % countries.length],
+        city: cities[i % cities.length],
+        leader: `Líder ${i + 1}`,
         createdAt: new Date().toISOString(),
       }));
 
       state.reports = [];
-      const year = currentYear();
-
       state.groups.forEach((group, idx) => {
-        const generalBooks = 120 + (idx % 9) * 25;
-        const decemberBooks = 180 + (idx % 7) * 30;
-
+        const monthly = 120 + (idx % 8) * 26;
+        const december = 180 + (idx % 7) * 33;
         state.reports.push(
-          {
-            id: uid("report"),
-            groupId: group.id,
-            date: `${year}-08-${String((idx % 28) + 1).padStart(2, "0")}`,
-            books: generalBooks,
-            notes: "Distribución mensual en espacios públicos",
-            photos: [],
-            createdAt: new Date().toISOString(),
-          },
-          {
-            id: uid("report"),
-            groupId: group.id,
-            date: `${year}-12-${String((idx % 28) + 1).padStart(2, "0")}`,
-            books: decemberBooks,
-            notes: "Maratón de diciembre",
-            photos: [],
-            createdAt: new Date().toISOString(),
-          }
+          { id: uid("report"), groupId: group.id, date: `${year}-08-${String((idx % 28) + 1).padStart(2, "0")}`, books: monthly, notes: "Ruta mensual", photos: [], createdAt: new Date().toISOString() },
+          { id: uid("report"), groupId: group.id, date: `${year}-12-${String((idx % 28) + 1).padStart(2, "0")}`, books: december, notes: "Maratón diciembre", photos: [], createdAt: new Date().toISOString() },
         );
       });
 
       saveState();
-      updateUI();
-      setFeedback("groupFeedback", "Demo creada con 108 grupos y reportes de ejemplo.", "success");
-      setFeedback("reportFeedback", "Puedes registrar nuevos reportes y subir fotos reales.", "normal");
+      refreshUI();
+      setFeedback("groupFeedback", "Demo cargada con 108 grupos y datos de ejemplo.", "success");
+      setFeedback("reportFeedback", "Puedes empezar a subir fotos reales de evidencia.", "normal");
+      toast("Demo lista para presentación");
+      sparkleBurst();
     }
 
     function clearAll() {
-      if (!window.confirm("¿Seguro que deseas borrar todos los grupos y reportes?")) {
-        return;
-      }
+      if (!window.confirm("¿Borrar todos los datos?")) return;
       state.groups = [];
       state.reports = [];
       saveState();
-      updateUI();
-      setFeedback("groupFeedback", "Datos borrados. Puedes empezar de nuevo.", "normal");
+      refreshUI();
+      setFeedback("groupFeedback", "Datos borrados.", "normal");
       setFeedback("reportFeedback", "", "normal");
+      toast("Datos reiniciados");
+    }
+
+    function initTabs() {
+      document.querySelectorAll(".tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+          btn.classList.add("active");
+          state.mode = btn.dataset.mode;
+          renderRanking();
+        });
+      });
+    }
+
+    function initDropzone() {
+      const dz = $("dropzone");
+      const input = $("reportPhotos");
+
+      dz.addEventListener("click", () => input.click());
+
+      dz.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dz.classList.add("dragging");
+      });
+
+      dz.addEventListener("dragleave", () => dz.classList.remove("dragging"));
+
+      dz.addEventListener("drop", (event) => {
+        event.preventDefault();
+        dz.classList.remove("dragging");
+        const files = event.dataTransfer.files;
+        input.files = files;
+        dz.textContent = `${files.length} archivo(s) listo(s) para subir.`;
+      });
+
+      input.addEventListener("change", () => {
+        const count = input.files ? input.files.length : 0;
+        dz.textContent = count ? `${count} archivo(s) seleccionado(s).` : "Arrastra fotos aquí o haz clic para seleccionar (máx 3, 1.5MB c/u).";
+      });
     }
 
     function init() {
       loadState();
-      if (!state.groups.length && !state.reports.length) {
-        seedDemoData();
-      } else {
-        updateUI();
-      }
-
+      if (!state.groups.length) seedDemoData();
+      refreshUI();
       $("reportDate").value = new Date().toISOString().split("T")[0];
       $("addGroupBtn").addEventListener("click", addGroup);
       $("saveReportBtn").addEventListener("click", saveReport);
       $("seedBtn").addEventListener("click", seedDemoData);
       $("clearBtn").addEventListener("click", clearAll);
-      $("rankingMode").addEventListener("change", renderRanking);
+      initTabs();
+      initDropzone();
+      window.addEventListener("resize", drawTrendChart);
     }
 
     init();
